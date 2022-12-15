@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from . import db
 from . import auth
+from . import blog
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -21,12 +22,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route("/")
-    def hello():
-        return str(os.path.join(app.instance_path, "user.sqlite"))
-
     db.init_app(app)
 
     app.register_blueprint(auth.bp)
+
+    app.register_blueprint(blog.bp)
+    app.add_url_rule("/", endpoint="index")
 
     return app
