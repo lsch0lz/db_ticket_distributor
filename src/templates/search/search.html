@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+    </script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form method="post">
+    <label for="start_station">Start</label>
+    <input name="start_station" id="start_station" value="{{ request.form['start_station'] }}" required>
+    <label for="end_station">End</label>
+    <input name="end_station" id="end_station" value="{{ request.form['end_station'] }}" required>
+    <input type="submit" value="Search">
+  </form>
+
+    <script>
+  $( function() {
+    var availableTags = [
+        {% for station in stations %}
+            "{{station}}",
+        {% endfor %}
+    ];
+    $( "#start_station" ).autocomplete({
+      source: availableTags
+    });
+    $( "#end_station" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+
+</body>
+</html>
+{% endblock %}
