@@ -1,4 +1,4 @@
 Flask==2.2.2
-pytest
-coverage
-pre-commit
+pytest==7.2.0
+coverage==7.0.0
+pre-commit==2.20.0
