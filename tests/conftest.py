@@ -10,7 +10,7 @@ with open(os.path.join(os.path.dirname(__file__), "data.sql"), "rb") as f:
 
 
 class AuthActions(object):
-    def __int__(self):
+    def __init__(self, client):
         self._client = client
 
     def login(self, username="test", password="test"):

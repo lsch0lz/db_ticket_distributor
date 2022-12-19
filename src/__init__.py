@@ -3,6 +3,8 @@ import os
 from flask import Flask
 from . import db
 from . import auth
+from . import search
+
 from . import blog
 
 def create_app(test_config=None):
@@ -28,5 +30,7 @@ def create_app(test_config=None):
 
     app.register_blueprint(blog.bp)
     app.add_url_rule("/", endpoint="index")
+
+    app.register_blueprint(search.bp)
 
     return app
